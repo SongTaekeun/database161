@@ -48,18 +48,17 @@ CREATE TABLE favorites (
     Latitude DECIMAL(10, 6) -- 위도 (없는 대여소면 둘다 0)
 );
 
-/*
+/* -- 원본이 지도를 쓰는 것을 감안하면 위도/경도도 필요할 수 있어서 보류 중
 ALTER TABLE favorites DROP COLUMN Longitude;
 ALTER TABLE favorites DROP COLUMN Latitude;
 */
 
 -- 회원 테이블
 CREATE TABLE userlist (
-    asdf
-    asdf
-    asdf
-    asdf
-    adsf
+    UID VARCHAR(40),
+    username VARCHAR(30),
+    PASSWORD VARCHAR(50),
+    HP INT(11) -- 에러 대비해서 12로 놔야 할까?
 );
 
 
@@ -108,17 +107,15 @@ SELECT *
 FROM Riding
 
 -- 회원가입
-INSERT INTO userlist (UID, pw, username, HP) -- HP = 핸드폰 번호
-/*FROM
-WHERE*/
+INSERT INTO userlist (UID, password, username, HP) -- HP = 핸드폰 번호
+	-- input(UID, password, username, HP) -- <- 입력값
 
 
 -- 즐겨찾기 추가
-SELECT qwer
-FROM asdf 
-WHERE BName = station -- station = 입력값
+INSERT INTO favorites -- (BID, RoadLocation, BLocation, Latitude, Longitude) -- 위에서 favorite에 Latitude, Longitude 뺐으면 여기도 빼야 됨
+FROM BoothMaster
+WHERE BLocation = station -- station = 입력값
 
 -- 즐겨찾기 제거 //원본 사이트에서는 제대로 동작하지 않음
-SELECT
-FROM favorites
-WHERE
+DELETE FROM favorites
+WHERE BLocation = station -- station = 입력값
